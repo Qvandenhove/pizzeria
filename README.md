@@ -1,9 +1,9 @@
 # Systeme de gestion d'une pizzeria
 
 ## Classes selon le besoin :
-    -Pizza(Identifiant nom, quantité prix)
-    -Commande (numéro, prix)
-    -Panier(Pizza, quantité, montant)
+    -pizzeria.Pizza(Identifiant nom, quantité prix)
+    -pizzeria.Commande (numéro, prix)
+    -pizzeria.Panier(pizzeria.Pizza, quantité, montant)
     
 
 ### Minimum syndicale:
