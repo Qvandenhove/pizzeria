@@ -2,16 +2,19 @@ package pizzeria;
 
 public class Pizza {
 
-    public int idPizza;
-    public String nomPizza;
-    public double prixPizza;
+    private int idPizza;
+    private String nomPizza;
+    private double prixPizza;
 
     public Pizza (int id, String nom, double prix) {
-        this.idPizza = id;
-        this.nomPizza = nom;
-        this.prixPizza = prix;
+        setIdPizza(idPizza);
+        setNomPizza(nomPizza);
+        setPrixPizza(prixPizza);
     } 
 
+    public int getIdPizza() {
+        return idPizza;
+    }
              
     public void setIdPizza(int idPizza) {
         this.idPizza = idPizza;

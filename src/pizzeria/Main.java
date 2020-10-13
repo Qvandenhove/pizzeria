@@ -17,7 +17,7 @@ public class Main {
                     break;
 
             }
-        }while(userAction != 0);
+        } while(userAction != 0);
     }
 
     public static void GestionPizza(){
