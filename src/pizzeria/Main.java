@@ -6,7 +6,6 @@ public class Main {
     Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args){
-        boolean shutdown = false;
         int userAction;
         do{
             userAction = Menu.MainMenu();
@@ -17,11 +16,12 @@ public class Main {
                 case 2:
                     GestionCommande();
                     break;
-                default:
-                    shutdown = true;
-            }
+                case 0:
 
-        }while(shutdown);
+                    break;
+
+            }
+        }while(userAction != 0);
     }
 
     public static void GestionPizza(){
