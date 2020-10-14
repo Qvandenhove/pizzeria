@@ -7,9 +7,9 @@ public class Pizza {
     private double prixPizza;
 
     public Pizza (int id, String nom, double prix) {
-        setIdPizza(idPizza);
-        setNomPizza(nomPizza);
-        setPrixPizza(prixPizza);
+        setIdPizza(id);
+        setNomPizza(nom);
+        setPrixPizza(prix);
     } 
 
     public int getIdPizza() {
@@ -34,5 +34,10 @@ public class Pizza {
 
     public void setPrixPizza(double prixPizza) {
         this.prixPizza = prixPizza;
+    }
+
+    @Override
+    public String toString() {
+        return getIdPizza() + "  " + getNomPizza() + "  " + getPrixPizza();
     }
 }

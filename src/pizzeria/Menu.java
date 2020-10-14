@@ -29,7 +29,7 @@ public class Menu {
 	public static int MenuCommande( ) {
 		System.out.println("1. Ajouter une pizza à la commande");
 		System.out.println("2. Supprimer une pizza de la commande");
-		System.out.println("3. Payer la commande"))
+		System.out.println("3. Payer la commande");
 		System.out.println("0. Revenir au menu principale");
 		System.out.println("--------------");
 		System.out.println("Choisissez une option");
