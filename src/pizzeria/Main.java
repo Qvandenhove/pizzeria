@@ -98,6 +98,8 @@ public class Main {
 
     public static void GestionCommande(){
         int userAction;
+        int idCommande;
+        Commande commande;
         do{
             userAction = Menu.MenuCommande();
             switch(userAction){
@@ -107,7 +109,13 @@ public class Main {
                 case 2:
                     // Supprimer une pizza à la commande
                     System.out.print("Quel est l'id de la commande à supprimer ?");
-
+                    idCommande = scan.nextInt();
+                    commande = getCommandeById(idCommande);
+                    if (commande != null){
+                        commandes.remove(commande);
+                    }else{
+                        System.out.println("Cette commande n'existe pas.");
+                    }
                     break;
                 case 3:
                     // Payer une commande
