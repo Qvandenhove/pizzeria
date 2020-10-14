@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static Scanner scan = new Scanner(System.in);
     static ArrayList<Pizza> pizzaDisponible = new ArrayList<>();
+    static ArrayList<Commande> commandes = new ArrayList<>();
     public static void main(String[] args){
         int userAction;
         do{
@@ -80,7 +81,27 @@ public class Main {
     }
 
     public static void GestionCommande(){
+        int userAction;
+        do{
+            userAction = Menu.MenuCommande();
+            switch(userAction){
+                case 1:
+                    // Ajouter une pizza à la commande
+                    break;
+                case 2:
+                    // Supprimer une pizza à la commande
+                    break;
+                case 3:
+                    // Payer une commande
+                    break;
+                case 4:
+                    // Récapitulatif de commande
+                    break;
+                default:
+                    // Gestion des options
+            }
 
+        }while(userAction != 0);
     }
 
     public static void DisplayPizzas(){

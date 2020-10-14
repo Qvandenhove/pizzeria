@@ -8,10 +8,13 @@ public class Commande {
     private double montantCommande;
     private ArrayList<Pizza> listPizza;
 
-    public Commande (int id, double montant, ArrayList<Pizza> listPizza) {
+    private boolean estPaye;
+
+    public Commande (int id, double montant, ArrayList<Pizza> listPizza, boolean estPaye) {
         setIdCommande(idCommande);
         setMontantCommande(montantCommande);
         setListPizza(listPizza);
+        setEstPaye(estPaye);
     } 
 
     public int getIdCommande() {
@@ -36,6 +39,14 @@ public class Commande {
 
     public void setListPizza(ArrayList<Pizza> listPizza) {
         this.listPizza = listPizza;
+    }
+
+    public boolean isEstPaye() {
+        return estPaye;
+    }
+
+    public void setEstPaye(boolean estPaye) {
+        this.estPaye = estPaye;
     }
 }
 
