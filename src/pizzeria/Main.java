@@ -105,6 +105,9 @@ public class Main {
             switch(userAction){
                 case 1:
                     // Ajouter une pizza à la commande
+                    int idCommande = commandes.size() == 0 ? 0 : commandes.get(commandes.size() - 1 ).getIdCommande();
+                    commandes.add(new Commande(idCommande, 0, ArrayList<Pizza>, false));
+                    System.out.println("Commande numéro " + idCommande + " ajoutée");
                     break;
                 case 2:
                     // Supprimer une pizza à la commande
