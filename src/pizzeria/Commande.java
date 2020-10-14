@@ -54,9 +54,9 @@ public class Commande {
     public String toString() {
         String response = "* --------------- * \n* Commande n° " + idCommande + " * \n* Pizza Quantite  Total *\n";
         ArrayList<Pizza> copyListPizza = new ArrayList<>();
-        listPizza.addAll(copyListPizza);
+        copyListPizza.addAll(listPizza);
         int quantite;
-        for (int pizza = 0;pizza < listPizza.size(); pizza++){
+        for (int pizza = 0;pizza < copyListPizza.size(); pizza++){
             Pizza pizzaAafficher = copyListPizza.get(pizza);
             quantite = Collections.frequency(copyListPizza, pizzaAafficher);
             response += "* " + pizzaAafficher.getNomPizza() + " " + quantite + (quantite * pizzaAafficher.getPrixPizza()) + " *";
