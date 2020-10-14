@@ -34,6 +34,7 @@ public class Main {
             userAction = Menu.MenuPizza();
             switch(userAction){
                 case 1:
+                    // Ajouter une pizza au stock
                     int idPizza = pizzaDisponible.size() == 0 ? 0 : pizzaDisponible.get(pizzaDisponible.size() - 1).getIdPizza();
                     System.out.print("Nom de la nouvelle pizza : ");
                     String newName = scan.next();
@@ -43,6 +44,7 @@ public class Main {
                     DisplayPizzas();
                     break;
                 case 2:
+                    // Modifier une pizza en stock
                     DisplayPizzas();
                     System.out.println("Quel est l'identifiant de la pizza à modifier ?");
                     idPizzaAModifier = scan.nextInt();
@@ -56,6 +58,7 @@ public class Main {
                     }
                     break;
                 case 3:
+                    // Supprimer une pizza du stock
                     DisplayPizzas();
                     System.out.println("Quel est l'identifiant de la pizza à supprimer ?");
                     idPizzaAModifier = scan.nextInt();
@@ -80,6 +83,19 @@ public class Main {
         return null;
     }
 
+    public static void DisplayPizzas(){
+        Pizza pizza;
+        System.out.println();
+        System.out.println("* --------------- *");
+        for(int i = 0;i< pizzaDisponible.size();i++){
+            pizza = pizzaDisponible.get(i);
+            System.out.println(pizza);
+        }
+
+        System.out.println("* --------------- *");
+        System.out.println();
+    }
+
     public static void GestionCommande(){
         int userAction;
         do{
@@ -90,6 +106,8 @@ public class Main {
                     break;
                 case 2:
                     // Supprimer une pizza à la commande
+                    System.out.print("Quel est l'id de la commande à supprimer ?");
+
                     break;
                 case 3:
                     // Payer une commande
@@ -104,16 +122,15 @@ public class Main {
         }while(userAction != 0);
     }
 
-    public static void DisplayPizzas(){
-        Pizza pizza;
-        System.out.println();
-        System.out.println("* --------------- *");
-        for(int i = 0;i< pizzaDisponible.size();i++){
-            pizza = pizzaDisponible.get(i);
-            System.out.println(pizza);
+    public static Commande getCommandeById(int idCommande){
+        Commande commande;
+        for (int i = 0;i < commandes.size(); i++){
+            if (idCommande == commandes.get(i).getIdCommande()){
+                return commandes.get(i);
+            }
         }
-
-        System.out.println("* --------------- *");
-        System.out.println();
+        return null;
     }
+
+
 }
