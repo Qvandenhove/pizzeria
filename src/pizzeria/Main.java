@@ -167,19 +167,19 @@ public class Main {
         }while(userAction != 0);
     }
 
-       public static void PayerCommande(){
-    	
-    	do{
-    		System.out.println("Quel est l'identifiant de la commande ?");
-            int idCommande= scan.nextInt();
-            Commande commande = getCommandeById(idCommande);
-    		System.out.println(idCommande);
+       public static void PayerCommande() {
 
-            double montant = commande.getMontantCommande();
-    		System.out.println(montant); 	
-    	}
-    	while(false);
+           do {
+               System.out.println("Quel est l'identifiant de la commande ?");
+               int idCommande = scan.nextInt();
+               Commande commande = database.getCommande(idCommande);
+               System.out.println(idCommande);
 
+               double montant = commande.getMontantCommande();
+               System.out.println(montant);
+           }
+           while (false);
+       }
     public static void DisplayCommandes(){
         ResultSet commandes = database.getCommands();
         System.out.println();

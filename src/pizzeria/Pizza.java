@@ -1,5 +1,7 @@
 package pizzeria;
 
+import static pizzeria.Main.database;
+
 public class Pizza {
 
     private int idPizza;
@@ -10,7 +12,14 @@ public class Pizza {
         setIdPizza(id);
         setNomPizza(nom);
         setPrixPizza(prix);
-    } 
+    }
+
+    public Pizza(int id){
+        Pizza pizza = database.getPizza(id);
+        setPrixPizza(pizza.getPrixPizza());
+        setNomPizza(pizza.getNomPizza());
+        setIdPizza(pizza.getIdPizza());
+    }
 
     public int getIdPizza() {
         return idPizza;

@@ -87,20 +87,21 @@ public class Database {
     }
 
     public Pizza getPizza(int id){
+        Pizza searchedPizza = null;
         try {
             if (checkPizza(id)) {
                 PreparedStatement getPizza = connec.prepareStatement("SELECT * FROM pizza WHERE id=?");
                 getPizza.setInt(1, id);
                 ResultSet result = getPizza.executeQuery();
                 result.next();
-                return new Pizza(result.getInt(1), result.getString(2), result.getDouble(3));
+                searchedPizza = new Pizza(result.getInt(1), result.getString(2), result.getDouble(3));
             }
         }catch (SQLException e){
             //e.printStackTrace();
             System.out.println("Une erreur est survenue, merci de reesayer plus tard.");
 
         }
-        return null;
+        return searchedPizza;
     }
 
     public boolean deletePizza(int id){
@@ -109,8 +110,8 @@ public class Database {
             PreparedStatement deletePizza = connec.prepareStatement("DELETE FROM pizza WHERE id = ?");
             connec.setAutoCommit(false);
             deletePizza.setInt(1, id);
-
             success = deletePizza.executeUpdate() == 1;
+            connec.commit();
         }catch(SQLException e){
             // e.printStackTrace();
             System.out.println("Une erreur est survenue, merci de reesayer plus tard.");
@@ -142,6 +143,18 @@ public class Database {
             e.printStackTrace();
 //            System.out.println("Une erreur est survenue, merci de reesayer plus tard.");
         }
+    }
+
+    public ResultSet getPizzaInCommand(int idCommande){
+        ResultSet resultPizzas = null;
+        try{
+            PreparedStatement getPizzaInCommand = connec.prepareStatement("SELECT idPizza, quantite FROM pizzaCommandee WHERE idCommande = ?");
+            getPizzaInCommand.setInt(1, idCommande);
+            resultPizzas = getPizzaInCommand.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return resultPizzas;
     }
 
     public Commande getCommande(int idCommande){
@@ -184,6 +197,23 @@ public class Database {
             e.printStackTrace();
         }
         return commandes;
+    }
+
+//    public ResultSet getPizzaInCommand(int idCommande){
+//        try{
+//            PreparedStatement getPizzasInCommand = connec.prepareStatement("SELECT * FROM pizzaCommandee WHERE idCommande = ?");
+//        }catch(SQLException e){
+//            System.out.println("Une erreur est survenue pendant le traitement");
+//        }
+//
+//    }
+
+    public void disconnect(){
+        try{
+            connec.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 }

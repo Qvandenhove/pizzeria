@@ -1,5 +1,10 @@
 package pizzeria;
 
+import java.sql.*;
+import java.util.Collections;
+
+import static pizzeria.Main.database;
+
 public class Commande {
     private int idCommande;
     private double montantCommande;
@@ -36,20 +41,22 @@ public class Commande {
         this.estPaye = estPaye;
     }
 
-//    @Override
-//    public String toString() {
-//        String response = "* --------------- * \n* Commande n° " + idCommande + " * \n* Pizza Quantite  Total *\n";
-//        ArrayList<Pizza> copyListPizza = new ArrayList<>();
-//        copyListPizza.addAll(listPizza);
-//        int quantite;
-//        for (int pizza = 0;pizza < copyListPizza.size(); pizza++){
-//            Pizza pizzaAafficher = copyListPizza.get(pizza);
-//            quantite = Collections.frequency(copyListPizza, pizzaAafficher);
-//            response += "* " + pizzaAafficher.getNomPizza() + "  x" + quantite + "  " + (float) (Math.round(quantite * pizzaAafficher.getPrixPizza() *100)/100) + " *\n";
-//            copyListPizza.remove(pizzaAafficher);
-//        }
-//        response += "* Total : " + Math.round(montantCommande * 100) / 100 + " *\n* --------------- *";
-//        return response;
-//    }
+    public String toString() {
+        String response = "* --------------- * \n* Commande n° " + idCommande + " * \n* Pizza Quantite  Total *\n";
+        ResultSet listePizza = database.getPizzaInCommand(idCommande);
+        int quantite;
+        try{
+            while(listePizza.next()){
+                Pizza pizzaAafficher = new Pizza(listePizza.getInt(1));
+                quantite = listePizza.getInt(2);
+                response += "* " + pizzaAafficher.getNomPizza() + "  x" + quantite + "  " + (float) (Math.round(quantite * pizzaAafficher.getPrixPizza() *100)/100) + " *\n";
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        response += "* Total : " + Math.round(montantCommande * 100) / 100 + " *\n* --------------- *";
+        return response;
+    }
 }
 
