@@ -127,6 +127,7 @@ public class Main {
                     break;
                 case 3:
                     // Payer une commande
+                    PayerCommande();
                     break;
                 case 4:
                     // Ajouter une pizza à la commande
@@ -163,6 +164,19 @@ public class Main {
 
         }while(userAction != 0);
     }
+
+       public static void PayerCommande(){
+    	
+    	do{
+    		System.out.println("Quel est l'identifiant de la commande ?");
+            int idCommande= scan.nextInt();
+            Commande commande = getCommandeById(idCommande);
+    		System.out.println(idCommande);
+
+            double montant = commande.getMontantCommande();
+    		System.out.println(montant); 	
+    	}
+    	while(false);
 
     public static void DisplayCommandes(){
         Commande commande;
