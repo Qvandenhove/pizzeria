@@ -7,14 +7,12 @@ import java.util.List;
 public class Commande {
     private int idCommande;
     private double montantCommande;
-    private ArrayList<Pizza> listPizza;
 
     private boolean estPaye;
 
-    public Commande (int id, double montant, ArrayList<Pizza> listPizza, boolean estPaye) {
-        setIdCommande(idCommande);
-        setMontantCommande(montantCommande);
-        setListPizza(listPizza);
+    public Commande (int id, double montant, boolean estPaye) {
+        setIdCommande(id);
+        setMontantCommande(montant);
         setEstPaye(estPaye);
     } 
 
@@ -34,14 +32,6 @@ public class Commande {
         this.montantCommande = montantCommande;
     }
 
-    public ArrayList<Pizza> getListPizza() {
-        return listPizza;
-    }
-
-    public void setListPizza(ArrayList<Pizza> listPizza) {
-        this.listPizza = listPizza;
-    }
-
     public boolean isEstPaye() {
         return estPaye;
     }
@@ -50,20 +40,20 @@ public class Commande {
         this.estPaye = estPaye;
     }
 
-    @Override
-    public String toString() {
-        String response = "* --------------- * \n* Commande n° " + idCommande + " * \n* Pizza Quantite  Total *\n";
-        ArrayList<Pizza> copyListPizza = new ArrayList<>();
-        copyListPizza.addAll(listPizza);
-        int quantite;
-        for (int pizza = 0;pizza < copyListPizza.size(); pizza++){
-            Pizza pizzaAafficher = copyListPizza.get(pizza);
-            quantite = Collections.frequency(copyListPizza, pizzaAafficher);
-            response += "* " + pizzaAafficher.getNomPizza() + " " + quantite + (quantite * pizzaAafficher.getPrixPizza()) + " *";
-            copyListPizza.remove(pizzaAafficher);
-        }
-        response += "* Total : " + montantCommande + " *\n* --------------- *";
-        return response;
-    }
+//    @Override
+//    public String toString() {
+//        String response = "* --------------- * \n* Commande n° " + idCommande + " * \n* Pizza Quantite  Total *\n";
+//        ArrayList<Pizza> copyListPizza = new ArrayList<>();
+//        copyListPizza.addAll(listPizza);
+//        int quantite;
+//        for (int pizza = 0;pizza < copyListPizza.size(); pizza++){
+//            Pizza pizzaAafficher = copyListPizza.get(pizza);
+//            quantite = Collections.frequency(copyListPizza, pizzaAafficher);
+//            response += "* " + pizzaAafficher.getNomPizza() + "  x" + quantite + "  " + (float) (Math.round(quantite * pizzaAafficher.getPrixPizza() *100)/100) + " *\n";
+//            copyListPizza.remove(pizzaAafficher);
+//        }
+//        response += "* Total : " + Math.round(montantCommande * 100) / 100 + " *\n* --------------- *";
+//        return response;
+//    }
 }
 

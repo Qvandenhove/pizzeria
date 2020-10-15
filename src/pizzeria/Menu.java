@@ -19,6 +19,7 @@ public class Menu {
 		System.out.println("1. Ajouter une pizzas");
 		System.out.println("2. Modifier une pizza");
 		System.out.println("3. Supprimer une pizza");
+		System.out.println("4. Afficher les pizzas");
 		System.out.println("0. Revenir au menu principale");
 		System.out.println("--------------");
 		System.out.println("Choisissez une option");
