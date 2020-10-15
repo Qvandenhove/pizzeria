@@ -123,7 +123,7 @@ public class Main {
                     idCommande = scan.nextInt();
                     commande = database.getCommande(idCommande);
                     if (commande != null){
-                        commandes.remove(commande);
+                        database.DeleteCommand(idCommande);
                     }else{
                         System.out.println("Cette commande n'existe pas.");
                     }
