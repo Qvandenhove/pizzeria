@@ -1,9 +1,5 @@
 package pizzeria;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class Commande {
     private int idCommande;
     private double montantCommande;

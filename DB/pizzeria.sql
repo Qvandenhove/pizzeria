@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 15 oct. 2020 à 09:13
+-- Généré le : jeu. 15 oct. 2020 à 09:22
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.5
 
@@ -27,11 +27,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `commande`
 --
 
-CREATE TABLE `commande` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `commande` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `montant` float NOT NULL,
-  `estPaye` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `estPaye` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `commande`
@@ -46,11 +47,12 @@ INSERT INTO `commande` (`id`, `montant`, `estPaye`) VALUES
 -- Structure de la table `pizza`
 --
 
-CREATE TABLE `pizza` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pizza` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) DEFAULT NULL,
-  `prix` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `prix` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `pizza`
@@ -68,50 +70,13 @@ INSERT INTO `pizza` (`id`, `nom`, `prix`) VALUES
 -- Structure de la table `pizzacommandee`
 --
 
-CREATE TABLE `pizzacommandee` (
+CREATE TABLE IF NOT EXISTS `pizzacommandee` (
   `idCommande` int(11) NOT NULL,
   `idPizza` int(11) NOT NULL,
-  `quantite` int(11) NOT NULL
+  `quantite` int(11) NOT NULL,
+  KEY `idPizzaFK` (`idPizza`),
+  KEY `idCommandeFK` (`idCommande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `commande`
---
-ALTER TABLE `commande`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `pizza`
---
-ALTER TABLE `pizza`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `pizzacommandee`
---
-ALTER TABLE `pizzacommandee`
-  ADD KEY `idPizzaFK` (`idPizza`),
-  ADD KEY `idCommandeFK` (`idCommande`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `commande`
---
-ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `pizza`
---
-ALTER TABLE `pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
