@@ -199,14 +199,28 @@ public class Database {
         return commandes;
     }
 
-//    public ResultSet getPizzaInCommand(int idCommande){
-//        try{
-//            PreparedStatement getPizzasInCommand = connec.prepareStatement("SELECT * FROM pizzaCommandee WHERE idCommande = ?");
-//        }catch(SQLException e){
-//            System.out.println("Une erreur est survenue pendant le traitement");
-//        }
-//
-//    }
+    public Boolean DeleteCommand(int id) {
+    	boolean success = false;
+    	
+    	try {
+    		if(checkCommand(id)) {
+    			PreparedStatement DeleteCommand = connec.prepareStatement("DELETE FROM commande WHERE id = ?");
+    			connec.setAutoCommit(false);
+                DeleteCommand.setInt(1, id);
+                
+                success = DeleteCommand.executeUpdate() == 1;
+                connec.commit();
+                System.out.println("La commande a été supprimé!");
+    		}
+    	}
+    	catch(SQLException e){
+    		System.out.println("La requete a rencontrer une erreur");
+    	}
+    	
+    	return success;
+    	
+    }
+
 
     public void disconnect(){
         try{
