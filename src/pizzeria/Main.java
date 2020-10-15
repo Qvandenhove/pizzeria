@@ -76,6 +76,10 @@ public class Main {
                     DisplayPizzas();
                 }
                 case 4 -> DisplayPizzas();
+
+                case 0 -> {
+                    database.disconnect();
+                }
             }
         }while(userAction != 0);
     }
@@ -98,7 +102,6 @@ public class Main {
     }
 
     public static void GestionCommande(){
-        ArrayList<Pizza> listPizzaCommande;
         int userAction;
         int idCommande;
         int idPizza;
@@ -144,7 +147,6 @@ public class Main {
                             database.addPizzaToCommand(idCommande, idPizza, quantiteCommande);
                             System.out.println(quantiteCommande + " " + pizzaCommande.getNomPizza() + " ajoutées à la commande");
                         }
-
                     }
 
                     break;
@@ -165,13 +167,18 @@ public class Main {
     }
 
     public static void DisplayCommandes(){
-        Commande commande;
+        ResultSet commandes = database.getCommands();
         System.out.println();
         System.out.println("* --------------- *");
-        for (Commande value : commandes) {
-            commande = value;
-            System.out.println(commande);
+        try{
+            while(commandes.next()) {
+                Commande commande = new Commande(commandes.getInt(1), commandes.getDouble(2), commandes.getBoolean(3));
+                System.out.println(commande);
+            }
+        }catch(SQLException e){
+            System.out.println("Une erreur est survenue de notre côté, Réessayez plus tard.");
         }
+
 
         System.out.println("* --------------- *");
         System.out.println();
